@@ -1,18 +1,16 @@
-package jsonstream_test
+package jsonstream
 
 import (
 	"fmt"
+	"github.com/iostrovok/check"
 	"testing"
 
-	. "github.com/iostrovok/check"
 	_ "github.com/iostrovok/check"
-
-	"github.com/iostrovok/jsonstream"
 )
 
 type testSuite struct{}
 
-var _ = Suite(&testSuite{})
+var _ = check.Suite(&testSuite{})
 
 func TestP(t *testing.T) { TestingT(t) }
 
@@ -22,15 +20,13 @@ const (
 
 func (s *testSuite) TestUniqueStringList(c *C) {
 
-	reader := jsonstream.New([]byte(line1))
+	reader := New([]byte(line1))
 
 	res, point, err := reader.ReadLine(10, false)
 
-
-	for i, v:= range []byte(line1) {
-		fmt.Printf("%d: %s\n",  i, string(v))
+	for i, v := range []byte(line1) {
+		fmt.Printf("%d: %s\n", i, string(v))
 	}
-
 
 	fmt.Printf("\n\n%s\n\n", string(res))
 	fmt.Printf("\n\npoint: %d\n\n", point)
